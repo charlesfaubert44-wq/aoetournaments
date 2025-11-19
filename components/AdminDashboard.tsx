@@ -66,7 +66,7 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
   const getPlayerName = (playerId: number | null) => {
     if (!playerId) return 'TBD';
     const player = players.find(p => p.id === playerId);
-    return player ? `${player.name} (${player.aoe2_username})` : 'Unknown';
+    return player ? `${player.name} (${player.steam_username})` : 'Unknown';
   };
 
   return (
