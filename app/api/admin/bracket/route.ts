@@ -4,10 +4,10 @@ import { generateBracket, assignSeeds } from '@/lib/bracket';
 export async function POST(request: NextRequest) {
   try {
     // Assign random seeds
-    assignSeeds();
+    await assignSeeds();
 
     // Generate bracket
-    const matches = generateBracket();
+    const matches = await generateBracket();
 
     return NextResponse.json({ success: true, matches });
   } catch (error: any) {

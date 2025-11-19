@@ -10,6 +10,8 @@
     "init-db": "tsx scripts/init-db.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@supabase/supabase-js": "^2.83.0",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.4.1",
     "next": "14.2.21",

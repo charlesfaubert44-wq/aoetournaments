@@ -1,18 +1,17 @@
 import { cookies } from 'next/headers';
 import bcrypt from 'bcryptjs';
-import { getDatabase } from './db';
+import { getAdminByUsername } from './supabase';
 
 const SESSION_COOKIE = 'admin_session';
 
 export async function verifyAdmin(username: string, password: string): Promise<boolean> {
-  const db = getDatabase();
-  const admin = db.prepare('SELECT * FROM admin_users WHERE username = ?').get(username) as any;
+  const admin = await getAdminByUsername(username);
 
   if (!admin) {
     return false;
   }
 
-  return await bcrypt.compare(password, admin.passwordHash);
+  return await bcrypt.compare(password, admin.password_hash);
 }
 
 export async function createSession(username: string) {

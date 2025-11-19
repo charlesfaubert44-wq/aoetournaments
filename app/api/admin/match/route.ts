@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    updateMatchWinner(matchId, winnerId);
+    await updateMatchWinner(matchId, winnerId);
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

@@ -66,7 +66,7 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
   const getPlayerName = (playerId: number | null) => {
     if (!playerId) return 'TBD';
     const player = players.find(p => p.id === playerId);
-    return player ? `${player.name} (${player.aoe2Username})` : 'Unknown';
+    return player ? `${player.name} (${player.aoe2_username})` : 'Unknown';
   };
 
   return (
@@ -94,7 +94,7 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
           </div>
           <div>
             <div className="text-3xl font-bold text-purple-600">
-              {matches.filter(m => m.winnerId).length}
+              {matches.filter(m => m.winner_id).length}
             </div>
             <div className="text-gray-600">Completed Matches</div>
           </div>
@@ -122,33 +122,33 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
             {matches.map((match) => (
               <div key={match.id} className="border border-gray-200 rounded p-4">
                 <div className="font-medium mb-2">
-                  Round {match.round}, Match {match.matchNumber}
+                  Round {match.round}, Match {match.match_number}
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
-                    <div>{getPlayerName(match.player1Id)}</div>
+                    <div>{getPlayerName(match.player1_id)}</div>
                     <div className="text-gray-500">vs</div>
-                    <div>{getPlayerName(match.player2Id)}</div>
+                    <div>{getPlayerName(match.player2_id)}</div>
                   </div>
-                  {match.player1Id && match.player2Id && !match.winnerId && (
+                  {match.player1_id && match.player2_id && !match.winner_id && (
                     <div className="space-x-2">
                       <button
-                        onClick={() => handleUpdateWinner(match.id, match.player1Id!)}
+                        onClick={() => handleUpdateWinner(match.id, match.player1_id!)}
                         className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
                       >
                         Player 1 Wins
                       </button>
                       <button
-                        onClick={() => handleUpdateWinner(match.id, match.player2Id!)}
+                        onClick={() => handleUpdateWinner(match.id, match.player2_id!)}
                         className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
                       >
                         Player 2 Wins
                       </button>
                     </div>
                   )}
-                  {match.winnerId && (
+                  {match.winner_id && (
                     <div className="text-green-600 font-medium">
-                      Winner: {getPlayerName(match.winnerId)}
+                      Winner: {getPlayerName(match.winner_id)}
                     </div>
                   )}
                 </div>
@@ -176,8 +176,8 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
                 <tr key={player.id} className="border-b">
                   <td className="p-2">{player.name}</td>
                   <td className="p-2">{player.email}</td>
-                  <td className="p-2">{player.aoe2Username}</td>
-                  <td className="p-2">{player.preferredCiv}</td>
+                  <td className="p-2">{player.aoe2_username}</td>
+                  <td className="p-2">{player.preferred_civ}</td>
                   <td className="p-2">{player.seed || '-'}</td>
                 </tr>
               ))}

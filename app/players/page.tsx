@@ -1,12 +1,10 @@
-import { getDatabase } from '@/lib/db';
-import { Player } from '@/lib/types';
+import { getAllPlayers } from '@/lib/supabase';
 import PlayerCard from '@/components/PlayerCard';
 
 export const dynamic = 'force-dynamic';
 
-export default function PlayersPage() {
-  const db = getDatabase();
-  const players = db.prepare('SELECT * FROM players ORDER BY registeredAt ASC').all() as Player[];
+export default async function PlayersPage() {
+  const players = await getAllPlayers();
 
   return (
     <main className="container mx-auto px-4 py-8">

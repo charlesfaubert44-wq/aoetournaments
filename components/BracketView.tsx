@@ -11,7 +11,7 @@ export default function BracketView({ matches, players }: BracketViewProps) {
   const getPlayerName = (playerId: number | null) => {
     if (!playerId) return 'TBD';
     const player = players.find(p => p.id === playerId);
-    return player ? player.aoe2Username : 'Unknown';
+    return player ? player.aoe2_username : 'Unknown';
   };
 
   const getRoundName = (round: number) => {
@@ -47,19 +47,19 @@ export default function BracketView({ matches, players }: BracketViewProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {roundMatches.map((match) => (
               <div key={match.id} className="border border-gray-300 rounded-lg p-4">
-                <div className="text-sm text-gray-500 mb-2">Match {match.matchNumber}</div>
+                <div className="text-sm text-gray-500 mb-2">Match {match.match_number}</div>
                 <div className="space-y-2">
-                  <div className={`p-2 rounded ${match.winnerId === match.player1Id ? 'bg-green-100 font-bold' : 'bg-gray-50'}`}>
-                    {getPlayerName(match.player1Id)}
+                  <div className={`p-2 rounded ${match.winner_id === match.player1_id ? 'bg-green-100 font-bold' : 'bg-gray-50'}`}>
+                    {getPlayerName(match.player1_id)}
                   </div>
                   <div className="text-center text-gray-400">vs</div>
-                  <div className={`p-2 rounded ${match.winnerId === match.player2Id ? 'bg-green-100 font-bold' : 'bg-gray-50'}`}>
-                    {getPlayerName(match.player2Id)}
+                  <div className={`p-2 rounded ${match.winner_id === match.player2_id ? 'bg-green-100 font-bold' : 'bg-gray-50'}`}>
+                    {getPlayerName(match.player2_id)}
                   </div>
                 </div>
-                {match.winnerId && (
+                {match.winner_id && (
                   <div className="mt-2 text-sm text-green-600 font-medium">
-                    Winner: {getPlayerName(match.winnerId)}
+                    Winner: {getPlayerName(match.winner_id)}
                   </div>
                 )}
               </div>

@@ -1,13 +1,11 @@
-import { getDatabase } from '@/lib/db';
-import { Match, Player } from '@/lib/types';
+import { getAllMatches, getAllPlayers } from '@/lib/supabase';
 import BracketView from '@/components/BracketView';
 
 export const dynamic = 'force-dynamic';
 
-export default function BracketsPage() {
-  const db = getDatabase();
-  const matches = db.prepare('SELECT * FROM matches ORDER BY round ASC, matchNumber ASC').all() as Match[];
-  const players = db.prepare('SELECT * FROM players').all() as Player[];
+export default async function BracketsPage() {
+  const matches = await getAllMatches();
+  const players = await getAllPlayers();
 
   return (
     <main className="container mx-auto px-4 py-8">

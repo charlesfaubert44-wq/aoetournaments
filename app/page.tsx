@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { getDatabase } from '@/lib/db';
+import { getPlayerCount } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-export default function HomePage() {
-  const db = getDatabase();
-  const playerCount = db.prepare('SELECT COUNT(*) as count FROM players').get() as { count: number };
+export default async function HomePage() {
+  const playerCount = await getPlayerCount();
 
   return (
     <main className="container mx-auto px-4">
@@ -38,7 +37,7 @@ export default function HomePage() {
         </div>
 
         <div className="text-xl font-semibold">
-          <span className="text-blue-600">{playerCount.count}</span> / 20 Players Registered
+          <span className="text-blue-600">{playerCount}</span> / 20 Players Registered
         </div>
       </section>
 

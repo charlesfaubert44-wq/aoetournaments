@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/db';
+import { getPlayerCount, getPlayerByEmail, createPlayer, getAllPlayers } from '@/lib/supabase';
 import { validateRegistration, RegistrationData } from '@/lib/validation';
 
 const MAX_PLAYERS = 20;
@@ -25,11 +25,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const db = getDatabase();
-
     // Check registration limit
-    const count = db.prepare('SELECT COUNT(*) as count FROM players').get() as { count: number };
-    if (count.count >= MAX_PLAYERS) {
+    const count = await getPlayerCount();
+    if (count >= MAX_PLAYERS) {
       return NextResponse.json(
         { error: 'Tournament is full (20/20 players)' },
         { status: 400 }
@@ -37,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check for duplicate email
-    const existing = db.prepare('SELECT id FROM players WHERE email = ?').get(data.email);
+    const existing = await getPlayerByEmail(data.email);
     if (existing) {
       return NextResponse.json(
         { error: 'Email already registered' },
@@ -46,12 +44,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert player
-    const result = db.prepare(`
-      INSERT INTO players (name, email, aoe2Username, preferredCiv)
-      VALUES (?, ?, ?, ?)
-    `).run(data.name.trim(), data.email.trim(), data.aoe2Username.trim(), data.preferredCiv);
-
-    const player = db.prepare('SELECT * FROM players WHERE id = ?').get(result.lastInsertRowid);
+    const player = await createPlayer(
+      data.name.trim(),
+      data.email.trim(),
+      data.aoe2Username.trim(),
+      data.preferredCiv
+    );
 
     return NextResponse.json({ success: true, player }, { status: 201 });
   } catch (error) {
@@ -65,8 +63,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const db = getDatabase();
-    const players = db.prepare('SELECT * FROM players ORDER BY registeredAt ASC').all();
+    const players = await getAllPlayers();
     const count = players.length;
 
     return NextResponse.json({ players, count, maxPlayers: MAX_PLAYERS });

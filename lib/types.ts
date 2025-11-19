@@ -2,26 +2,26 @@ export interface Player {
   id: number;
   name: string;
   email: string;
-  aoe2Username: string;
-  preferredCiv: string;
-  registeredAt: string;
+  aoe2_username: string;
+  preferred_civ: string;
+  registered_at: string;
   seed: number | null;
 }
 
 export interface Match {
   id: number;
   round: number;
-  matchNumber: number;
-  player1Id: number | null;
-  player2Id: number | null;
-  winnerId: number | null;
-  completedAt: string | null;
+  match_number: number;
+  player1_id: number | null;
+  player2_id: number | null;
+  winner_id: number | null;
+  completed_at: string | null;
 }
 
 export interface AdminUser {
   id: number;
   username: string;
-  passwordHash: string;
+  password_hash: string;
 }
 
 export const AOE2_CIVILIZATIONS = [
