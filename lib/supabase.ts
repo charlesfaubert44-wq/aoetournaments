@@ -40,16 +40,16 @@ export async function getPlayerByEmail(email: string) {
 export async function createPlayer(
   name: string,
   email: string,
-  aoe2Username: string,
-  preferredCiv: string
+  steamUsername: string,
+  elo: number | null
 ) {
   const { data, error } = await supabase
     .from('players')
     .insert({
       name,
       email,
-      aoe2_username: aoe2Username,
-      preferred_civ: preferredCiv,
+      steam_username: steamUsername,
+      elo,
     })
     .select()
     .single();

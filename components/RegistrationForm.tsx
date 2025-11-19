@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { AOE2_CIVILIZATIONS } from '@/lib/types';
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    aoe2Username: '',
-    preferredCiv: '',
+    steamUsername: '',
     tournamentCode: ''
   });
   const [loading, setLoading] = useState(false);
@@ -84,37 +82,21 @@ export default function RegistrationForm() {
       </div>
 
       <div>
-        <label htmlFor="aoe2Username" className="block text-sm font-medium mb-1">
-          AoE2 Username
+        <label htmlFor="steamUsername" className="block text-sm font-medium mb-1">
+          Steam AoE2 Username
         </label>
         <input
-          id="aoe2Username"
+          id="steamUsername"
           type="text"
           required
-          value={formData.aoe2Username}
-          onChange={(e) => setFormData({ ...formData, aoe2Username: e.target.value })}
+          value={formData.steamUsername}
+          onChange={(e) => setFormData({ ...formData, steamUsername: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          placeholder="Your Steam username for AoE2"
         />
-      </div>
-
-      <div>
-        <label htmlFor="preferredCiv" className="block text-sm font-medium mb-1">
-          Preferred Civilization
-        </label>
-        <select
-          id="preferredCiv"
-          required
-          value={formData.preferredCiv}
-          onChange={(e) => setFormData({ ...formData, preferredCiv: e.target.value })}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-        >
-          <option value="">Select a civilization...</option>
-          {AOE2_CIVILIZATIONS.map((civ) => (
-            <option key={civ} value={civ}>
-              {civ}
-            </option>
-          ))}
-        </select>
+        <p className="text-xs text-gray-500 mt-1">
+          We&apos;ll use this to look up your ELO from AoE2 Insights
+        </p>
       </div>
 
       <div>

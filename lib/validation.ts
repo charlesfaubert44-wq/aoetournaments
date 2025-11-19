@@ -1,10 +1,7 @@
-import { AOE2_CIVILIZATIONS } from './types';
-
 export interface RegistrationData {
   name: string;
   email: string;
-  aoe2Username: string;
-  preferredCiv: string;
+  steamUsername: string;
   tournamentCode: string;
 }
 
@@ -19,12 +16,8 @@ export function validateRegistration(data: RegistrationData): { valid: boolean; 
     errors.push('Valid email is required');
   }
 
-  if (!data.aoe2Username || data.aoe2Username.trim().length < 2) {
-    errors.push('AoE2 username must be at least 2 characters');
-  }
-
-  if (!data.preferredCiv || !AOE2_CIVILIZATIONS.includes(data.preferredCiv as any)) {
-    errors.push('Valid civilization is required');
+  if (!data.steamUsername || data.steamUsername.trim().length < 2) {
+    errors.push('Steam AoE2 username must be at least 2 characters');
   }
 
   if (!data.tournamentCode) {

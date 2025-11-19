@@ -9,8 +9,11 @@ export default function PlayerCard({ player }: PlayerCardProps) {
     <div className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
       <h3 className="text-lg font-semibold mb-2">{player.name}</h3>
       <div className="space-y-1 text-sm text-gray-600">
-        <p><span className="font-medium">AoE2:</span> {player.aoe2_username}</p>
-        <p><span className="font-medium">Civilization:</span> {player.preferred_civ}</p>
+        <p><span className="font-medium">Steam:</span> {player.steam_username}</p>
+        <p><span className="font-medium">ELO:</span> {player.elo !== null ? player.elo : 'N/A'}</p>
+        {player.seed && (
+          <p><span className="font-medium">Seed:</span> #{player.seed}</p>
+        )}
         <p className="text-xs text-gray-400">
           Registered: {new Date(player.registered_at).toLocaleDateString()}
         </p>

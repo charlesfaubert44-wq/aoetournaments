@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPlayerCount, getPlayerByEmail, createPlayer, getAllPlayers } from '@/lib/supabase';
 import { validateRegistration, RegistrationData } from '@/lib/validation';
+import { fetchPlayerElo } from '@/lib/aoe2insights';
 
 const MAX_PLAYERS = 20;
 
@@ -43,12 +44,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Fetch ELO from AoE2 Insights
+    const elo = await fetchPlayerElo(data.steamUsername.trim());
+
     // Insert player
     const player = await createPlayer(
       data.name.trim(),
       data.email.trim(),
-      data.aoe2Username.trim(),
-      data.preferredCiv
+      data.steamUsername.trim(),
+      elo
     );
 
     return NextResponse.json({ success: true, player }, { status: 201 });
