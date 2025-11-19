@@ -166,8 +166,8 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
               <tr className="border-b">
                 <th className="text-left p-2">Name</th>
                 <th className="text-left p-2">Email</th>
-                <th className="text-left p-2">AoE2 Username</th>
-                <th className="text-left p-2">Civilization</th>
+                <th className="text-left p-2">Steam Username</th>
+                <th className="text-left p-2">ELO</th>
                 <th className="text-left p-2">Seed</th>
               </tr>
             </thead>
@@ -176,8 +176,8 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
                 <tr key={player.id} className="border-b">
                   <td className="p-2">{player.name}</td>
                   <td className="p-2">{player.email}</td>
-                  <td className="p-2">{player.aoe2_username}</td>
-                  <td className="p-2">{player.preferred_civ}</td>
+                  <td className="p-2">{player.steam_username}</td>
+                  <td className="p-2">{player.elo !== null ? player.elo : 'N/A'}</td>
                   <td className="p-2">{player.seed || '-'}</td>
                 </tr>
               ))}
