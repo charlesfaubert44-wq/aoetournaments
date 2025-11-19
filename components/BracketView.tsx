@@ -11,7 +11,7 @@ export default function BracketView({ matches, players }: BracketViewProps) {
   const getPlayerName = (playerId: number | null) => {
     if (!playerId) return 'TBD';
     const player = players.find(p => p.id === playerId);
-    return player ? player.aoe2_username : 'Unknown';
+    return player ? player.steam_username : 'Unknown';
   };
 
   const getRoundName = (round: number) => {
