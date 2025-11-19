@@ -13,6 +13,8 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
   const [players, setPlayers] = useState(initialPlayers);
   const [matches, setMatches] = useState(initialMatches);
   const [generating, setGenerating] = useState(false);
+  const [tournamentCode, setTournamentCode] = useState(process.env.NEXT_PUBLIC_TOURNAMENT_CODE || 'COUPE_QUEBEC_2025');
+  const [showCode, setShowCode] = useState(false);
   const router = useRouter();
 
   const handleGenerateBracket = async () => {
@@ -98,6 +100,36 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
             </div>
             <div className="text-gray-600">Completed Matches</div>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">Tournament Registration Code</h2>
+        <p className="text-gray-600 mb-4">Share this code with players to allow them to register</p>
+        <div className="flex gap-4 items-center">
+          <div className="flex-1">
+            <input
+              type={showCode ? "text" : "password"}
+              value={tournamentCode}
+              readOnly
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50 font-mono text-lg"
+            />
+          </div>
+          <button
+            onClick={() => setShowCode(!showCode)}
+            className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+          >
+            {showCode ? 'Hide' : 'Show'}
+          </button>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(tournamentCode);
+              alert('Tournament code copied to clipboard!');
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Copy
+          </button>
         </div>
       </div>
 

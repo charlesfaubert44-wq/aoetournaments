@@ -2,26 +2,240 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap');
+
+:root {
+  --medieval-gold: #D4AF37;
+  --medieval-crimson: #8B0000;
+  --medieval-stone: #8B8680;
+  --medieval-parchment: #F4E7D7;
+  --medieval-ink: #2C2416;
+  --medieval-forest: #2D5016;
+  --new-year-sparkle: #FFD700;
+}
+
 body {
-  @apply bg-gray-50;
+  background: linear-gradient(135deg, #1a1410 0%, #2d2416 50%, #1a1410 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-medieval;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
 }
 
-.btn-primary {
-  @apply px-6 py-3 bg-medieval-gold text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors;
+.medieval-title {
+  font-family: 'MedievalSharp', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: var(--medieval-gold);
 }
 
-.btn-secondary {
-  @apply px-6 py-3 bg-medieval-crimson text-white font-semibold rounded-lg hover:bg-red-700 transition-colors;
+.parchment-card {
+  background: linear-gradient(to bottom, #F4E7D7 0%, #E8D5C4 100%);
+  border: 3px solid #8B7355;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.card {
-  @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
+.parchment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.3;
 }
 
-.tournament-bracket-match {
-  @apply border-2 border-medieval-stone rounded-lg p-4 bg-white hover:shadow-lg transition-shadow;
+.medieval-border {
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #D4AF37, #8B7355, #D4AF37) 1;
+  border-radius: 8px;
+  position: relative;
+}
+
+.medieval-border::before,
+.medieval-border::after {
+  content: '❖';
+  position: absolute;
+  color: var(--medieval-gold);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.medieval-border::before {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.medieval-border::after {
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Snowfall Animation */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10vh;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  animation: snowfall linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Sparkle Animation */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--new-year-sparkle);
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Glow effect */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+.glow-crimson {
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Button styles */
+.btn-medieval {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  padding: 12px 32px;
+  background: linear-gradient(to bottom, #D4AF37 0%, #B8941F 100%);
+  color: #1a1410;
+  border: 2px solid #8B7355;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-medieval:hover {
+  background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-medieval:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Tournament bracket styling */
+.bracket-match {
+  background: var(--medieval-parchment);
+  border: 3px solid var(--medieval-stone);
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.bracket-match:hover {
+  border-color: var(--medieval-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  transform: scale(1.05);
+}
+
+/* Player card styling */
+.player-card {
+  background: linear-gradient(135deg, #F4E7D7 0%, #E8D5C4 100%);
+  border: 2px solid #8B7355;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.player-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.player-card:hover::before {
+  opacity: 1;
+}
+
+.player-card:hover {
+  border-color: var(--medieval-gold);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
