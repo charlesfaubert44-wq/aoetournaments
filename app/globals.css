@@ -2,24 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 :root {
-  --medieval-burgundy: #6F1D1B;
-  --medieval-gold: #BB9457;
-  --medieval-dark-brown: #432818;
-  --medieval-bronze: #99582A;
-  --medieval-cream: #FFE6A7;
-  --medieval-parchment: #F4E7D7;
-  --new-year-sparkle: #FFD700;
+  --stone-gray: #7A7A7A;
+  --stone-dark: #4A4A4A;
+  --stone-light: #A0A0A0;
+  --wood-brown: #8B4513;
+  --wood-light: #CD853F;
+  --grass-green: #5A8F29;
+  --gold: #FFD700;
+  --iron: #C0C0C0;
+  --burgundy: #6F1D1B;
+  --parchment: #F4E1C1;
+}
+
+* {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 body {
-  background: linear-gradient(135deg, #432818 0%, #6F1D1B 25%, #432818 50%, #99582A 75%, #432818 100%);
-  background-attachment: fixed;
+  background-color: #2D1F14;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px),
+    repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px);
   min-height: 100vh;
+  font-family: 'VT323', monospace;
   position: relative;
-  overflow-x: hidden;
 }
 
 body::before {
@@ -30,240 +41,281 @@ body::before {
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(187, 148, 87, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(111, 29, 27, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255, 230, 167, 0.03) 0%, transparent 60%);
+    linear-gradient(rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(139, 69, 19, 0.1) 2px, transparent 2px);
+  background-size: 16px 16px;
   pointer-events: none;
   z-index: 0;
+  opacity: 0.3;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.medieval-title {
-  font-family: 'MedievalSharp', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: var(--medieval-gold);
+.pixel-title {
+  font-family: 'Press Start 2P', cursive;
+  color: #FFD700;
+  text-shadow:
+    4px 4px 0px #8B4513,
+    8px 8px 0px rgba(0,0,0,0.3);
+  line-height: 1.5;
 }
 
-.parchment-card {
-  background: linear-gradient(to bottom, #FFE6A7 0%, #F4E7D7 100%);
-  border: 3px solid #99582A;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+/* Minecraft/Pixel Art Card Style */
+.pixel-card {
+  background: #8B7355;
+  border: 6px solid;
+  border-color: #5A4632 #3A2A1A #3A2A1A #5A4632;
+  box-shadow:
+    inset 0 0 0 2px #A89070,
+    inset 0 0 0 4px #8B7355,
+    4px 4px 0px rgba(0,0,0,0.5);
   position: relative;
-  overflow: hidden;
+  padding: 20px;
 }
 
-.parchment-card::before {
+.pixel-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
   pointer-events: none;
-  opacity: 0.3;
 }
 
-.medieval-border {
-  border: 4px solid;
-  border-image: linear-gradient(45deg, #D4AF37, #8B7355, #D4AF37) 1;
-  border-radius: 8px;
+.stone-card {
+  background: #7A7A7A;
+  border: 6px solid;
+  border-color: #A0A0A0 #4A4A4A #4A4A4A #A0A0A0;
+  box-shadow:
+    inset 0 0 0 2px #9A9A9A,
+    inset 0 0 0 4px #7A7A7A,
+    4px 4px 0px rgba(0,0,0,0.5);
   position: relative;
-}
-
-.medieval-border::before,
-.medieval-border::after {
-  content: '❖';
-  position: absolute;
-  color: var(--medieval-gold);
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.medieval-border::before {
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.medieval-border::after {
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Snowfall Animation */
-@keyframes snowfall {
-  0% {
-    transform: translateY(-10vh) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) translateX(100px);
-    opacity: 0;
-  }
-}
-
-.snowflake {
-  position: fixed;
-  top: -10vh;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.5rem;
-  animation: snowfall linear infinite;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* Sparkle Animation */
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.sparkle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--new-year-sparkle);
-  border-radius: 50%;
-  animation: sparkle 2s ease-in-out infinite;
-}
-
-/* Glow effect */
-.glow-gold {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-}
-
-.glow-crimson {
-  box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
-}
-
-/* Hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-}
-
-/* Button styles */
-.btn-medieval {
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  padding: 12px 32px;
-  background: linear-gradient(to bottom, #BB9457 0%, #99582A 100%);
-  color: #FFE6A7;
-  border: 2px solid #432818;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 230, 167, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.btn-medieval:hover {
-  background: linear-gradient(to bottom, #FFE6A7 0%, #BB9457 100%);
-  color: #432818;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(187, 148, 87, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.btn-medieval:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(67, 40, 24, 0.4), inset 0 1px 0 rgba(255, 230, 167, 0.2);
-}
-
-.btn-burgundy {
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  padding: 12px 32px;
-  background: linear-gradient(to bottom, #6F1D1B 0%, #432818 100%);
-  color: #FFE6A7;
-  border: 2px solid #99582A;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 230, 167, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.btn-burgundy:hover {
-  background: linear-gradient(to bottom, #99582A 0%, #6F1D1B 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(111, 29, 27, 0.6), inset 0 1px 0 rgba(255, 230, 167, 0.3);
-}
-
-.btn-burgundy:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(67, 40, 24, 0.4);
-}
-
-/* Tournament bracket styling */
-.bracket-match {
-  background: var(--medieval-parchment);
-  border: 3px solid var(--medieval-stone);
-  border-radius: 8px;
-  padding: 16px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.bracket-match:hover {
-  border-color: var(--medieval-gold);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-  transform: scale(1.05);
-}
-
-/* Player card styling */
-.player-card {
-  background: linear-gradient(135deg, #FFE6A7 0%, #F4E7D7 100%);
-  border: 3px solid #99582A;
-  border-radius: 12px;
   padding: 20px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
 }
 
-.player-card::before {
+.stone-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(187, 148, 87, 0.2) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.1) 3px, rgba(0,0,0,0.1) 6px);
+  pointer-events: none;
 }
 
-.player-card:hover::before {
-  opacity: 1;
+/* Pixel Buttons - Minecraft Style */
+.btn-pixel {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  padding: 12px 24px;
+  background: #5A8F29;
+  border: 4px solid;
+  border-color: #7ABF3F #2A5F19 #2A5F19 #7ABF3F;
+  box-shadow:
+    inset 0 0 0 2px #6AAF39,
+    4px 4px 0px rgba(0,0,0,0.4);
+  color: white;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: all 0.1s;
+  position: relative;
 }
 
-.player-card:hover {
-  border-color: var(--medieval-gold);
-  box-shadow: 0 8px 24px rgba(187, 148, 87, 0.5), 0 0 30px rgba(255, 230, 167, 0.3);
-  transform: translateY(-5px);
+.btn-pixel:hover {
+  background: #7ABF3F;
+  border-color: #9ADF5F #4A7F29 #4A7F29 #9ADF5F;
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 0 0 0 2px #8ACF4F,
+    2px 2px 0px rgba(0,0,0,0.4);
+}
+
+.btn-pixel:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn-gold {
+  background: #FFD700;
+  border-color: #FFF44F #AA8F00 #AA8F00 #FFF44F;
+  color: #4A2800;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
+}
+
+.btn-gold:hover {
+  background: #FFF44F;
+  border-color: #FFFF8F #CCA700 #CCA700 #FFFF8F;
+}
+
+.btn-stone {
+  background: #7A7A7A;
+  border-color: #A0A0A0 #4A4A4A #4A4A4A #A0A0A0;
+  color: white;
+}
+
+.btn-stone:hover {
+  background: #9A9A9A;
+  border-color: #C0C0C0 #6A6A6A #6A6A6A #C0C0C0;
+}
+
+/* Player Card - Pixel Art Style */
+.player-pixel {
+  background: #F4E1C1;
+  border: 6px solid;
+  border-color: #D4C1A1 #A48861 #A48861 #D4C1A1;
+  box-shadow:
+    inset 0 0 0 2px #F4E1D1,
+    inset 0 0 0 4px #E4D1B1,
+    4px 4px 0px rgba(0,0,0,0.5);
+  padding: 16px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.player-pixel:hover {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    inset 0 0 0 2px #F4E1D1,
+    inset 0 0 0 4px #E4D1B1,
+    6px 6px 0px rgba(0,0,0,0.5);
+}
+
+.player-pixel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(139,69,19,0.03) 1px, rgba(139,69,19,0.03) 2px);
+  pointer-events: none;
+}
+
+/* Bracket Match - Pixel Style */
+.bracket-pixel {
+  background: #D4C1A1;
+  border: 4px solid;
+  border-color: #F4E1C1 #94815| #948161 #F4E1C1;
+  box-shadow:
+    inset 0 0 0 2px #E4D1B1,
+    3px 3px 0px rgba(0,0,0,0.4);
+  padding: 12px;
+  position: relative;
+}
+
+.bracket-pixel:hover {
+  background: #E4D1B1;
+  border-color: #FFD700 #AA8F00 #AA8F00 #FFD700;
+  box-shadow:
+    inset 0 0 0 2px #F4E1C1,
+    4px 4px 0px rgba(0,0,0,0.5);
+}
+
+/* HP Bar / ELO Bar - Game Style */
+.hp-bar {
+  height: 16px;
+  background: #2A2A2A;
+  border: 3px solid;
+  border-color: #1A1A1A #4A4A4A #4A4A4A #1A1A1A;
+  position: relative;
+  overflow: hidden;
+}
+
+.hp-bar-fill {
+  height: 100%;
+  background: linear-gradient(to bottom, #7ABF3F 0%, #5A8F29 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+  transition: width 0.3s;
+}
+
+.hp-bar-fill.gold {
+  background: linear-gradient(to bottom, #FFD700 0%, #AA8F00 100%);
+}
+
+/* Pixelated HR */
+.pixel-hr {
+  height: 4px;
+  background: #4A4A4A;
+  border: none;
+  margin: 16px 0;
+  box-shadow: 0 2px 0px #7A7A7A;
+}
+
+/* Glow Effect - Enchantment Style */
+.enchanted {
+  animation: enchant 2s ease-in-out infinite;
+}
+
+@keyframes enchant {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 0 2px rgba(147, 112, 219, 0.5),
+      0 0 20px rgba(147, 112, 219, 0.3);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 2px rgba(147, 112, 219, 0.8),
+      0 0 30px rgba(147, 112, 219, 0.6);
+  }
+}
+
+/* Text Styles */
+.pixel-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #2A1A0A;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.pixel-text-white {
+  color: #FFFFFF;
+  text-shadow:
+    2px 2px 0px #000000,
+    3px 3px 0px rgba(0,0,0,0.5);
+}
+
+.pixel-text-gold {
+  color: #FFD700;
+  text-shadow:
+    2px 2px 0px #8B6914,
+    3px 3px 0px rgba(0,0,0,0.5);
+}
+
+/* Container */
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pixel-title {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .btn-pixel {
+    font-size: 10px;
+    padding: 10px 20px;
+  }
+
+  .pixel-text {
+    font-size: 12px;
+  }
 }

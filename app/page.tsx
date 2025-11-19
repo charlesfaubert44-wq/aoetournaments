@@ -7,106 +7,152 @@ export default async function HomePage() {
   const playerCount = await getPlayerCount();
 
   return (
-    <main className="container mx-auto px-4 relative z-10">
-      <section className="py-20 text-center">
-        <div className="mb-8">
-          <div className="text-6xl mb-4">🏰</div>
-          <h1 className="text-7xl font-bold mb-6 medieval-title drop-shadow-lg">
-            Coupe Québec AOE2
+    <main className="game-container">
+      {/* Hero Section */}
+      <section className="py-12 text-center">
+        <div className="mb-12">
+          <div className="text-6xl mb-6">🏰</div>
+          <h1 className="pixel-title text-4xl md:text-5xl mb-6">
+            COUPE QUEBEC<br />
+            AOE2
           </h1>
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="text-4xl">⚔️</span>
-            <p className="text-3xl font-semibold" style={{ color: '#FFE6A7', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-              New Year&apos;s Tournament 2025
-            </p>
-            <span className="text-4xl">⚔️</span>
+          <div className="pixel-text text-xl mb-4 pixel-text-gold">
+            ⚔️ NEW YEAR TOURNAMENT 2025 ⚔️
           </div>
         </div>
 
-        <div className="parchment-card max-w-3xl mx-auto mb-12 p-8">
-          <p className="text-xl mb-6 leading-relaxed" style={{ color: '#432818' }}>
-            <span className="text-2xl font-bold block mb-4" style={{ color: '#6F1D1B' }}>
-              📯 Hear Ye, Hear Ye! 📯
-            </span>
-            Join us for an <span className="font-bold" style={{ color: '#6F1D1B' }}>epic 20-player</span> single-elimination tournament!
-            Reunite with old friends and compete for glory in the ultimate
-            Age of Empires 2 showdown as we ring in the New Year!
-          </p>
-
-          <div className="text-2xl font-bold mb-6" style={{ color: '#BB9457' }}>
-            <span className="text-5xl">{playerCount}</span>
-            <span className="mx-2">/</span>
-            <span className="text-3xl">20</span>
-            <div className="text-lg mt-2" style={{ color: '#6F1D1B' }}>Warriors Assembled</div>
-          </div>
-
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link href="/register" className="btn-medieval hover-lift">
-              ⚔️ Join the Battle
-            </Link>
-            <Link href="/brackets" className="btn-burgundy hover-lift">
-              🏆 View Brackets
-            </Link>
-            <Link href="/players" className="btn-medieval hover-lift">
-              👥 See Warriors
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 -mx-4 px-4" style={{ background: 'rgba(67, 40, 24, 0.3)' }}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 medieval-title">
-            ⚔️ Tournament Format ⚔️
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="parchment-card p-6 hover-lift">
-              <div className="text-4xl mb-3">🛡️</div>
-              <h3 className="text-xl font-bold mb-3" style={{ color: '#6F1D1B' }}>Single Elimination</h3>
-              <p style={{ color: '#432818' }}>
-                Classic bracket format with 20 warriors. Top 4 champions receive first-round byes.
+        {/* Main Info Card */}
+        <div className="pixel-card max-w-3xl mx-auto mb-12">
+          <div className="space-y-6">
+            <div className="pixel-text text-sm leading-relaxed" style={{ color: '#2A1A0A' }}>
+              <div className="text-base font-bold mb-4 pixel-text-gold">
+                === HEAR YE! HEAR YE! ===
+              </div>
+              <p className="mb-4">
+                EPIC 20-WARRIOR BATTLE AWAITS!<br/>
+                SINGLE ELIMINATION TOURNAMENT!<br/>
+                PROVE YOUR MIGHT IN AOE2!
               </p>
             </div>
-            <div className="parchment-card p-6 hover-lift">
-              <div className="text-4xl mb-3">🏆</div>
-              <h3 className="text-xl font-bold mb-3" style={{ color: '#6F1D1B' }}>5 Glorious Rounds</h3>
-              <p style={{ color: '#432818' }}>
-                From Round of 16 to the Grand Championship. Every battle shapes destiny!
-              </p>
+
+            {/* Player Counter with Pixel HP Bar Style */}
+            <div>
+              <div className="hp-bar mb-2">
+                <div
+                  className="hp-bar-fill gold"
+                  style={{ width: `${(playerCount / 20) * 100}%` }}
+                />
+              </div>
+              <div className="pixel-text text-base pixel-text-gold">
+                [{playerCount}/20] WARRIORS ASSEMBLED
+              </div>
             </div>
-            <div className="parchment-card p-6 hover-lift">
-              <div className="text-4xl mb-3">🎊</div>
-              <h3 className="text-xl font-bold mb-3" style={{ color: '#6F1D1B' }}>New Year Celebration</h3>
-              <p style={{ color: '#432818' }}>
-                Friendly competition among comrades. Focus on fun, glory, and nostalgia!
-              </p>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Link href="/register" className="btn-pixel btn-gold">
+                ⚔️ JOIN BATTLE
+              </Link>
+              <Link href="/brackets" className="btn-pixel">
+                🏆 BRACKETS
+              </Link>
+              <Link href="/players" className="btn-pixel btn-stone">
+                👥 WARRIORS
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Tournament Format Section */}
+      <section className="py-12">
+        <h2 className="pixel-title text-3xl text-center mb-12 pixel-text-white">
+          ⚔️ TOURNAMENT INFO ⚔️
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Card 1 - Stone Style */}
+          <div className="stone-card">
+            <div className="text-center">
+              <div className="text-5xl mb-4">🛡️</div>
+              <h3 className="pixel-text text-sm mb-4 pixel-text-white">
+                SINGLE<br/>ELIMINATION
+              </h3>
+              <hr className="pixel-hr" />
+              <p className="pixel-text text-xs leading-relaxed pixel-text-white">
+                20 WARRIORS<br/>
+                TOP 4 GET BYES<br/>
+                CLASSIC BRACKET
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2 - Wood Style */}
+          <div className="pixel-card">
+            <div className="text-center">
+              <div className="text-5xl mb-4">🏆</div>
+              <h3 className="pixel-text text-sm mb-4 pixel-text-gold">
+                5 GLORIOUS<br/>ROUNDS
+              </h3>
+              <hr className="pixel-hr" />
+              <p className="pixel-text text-xs leading-relaxed" style={{ color: '#2A1A0A' }}>
+                ROUND OF 16<br/>
+                TO CHAMPIONSHIP<br/>
+                EVERY BATTLE COUNTS!
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3 - Stone Style */}
+          <div className="stone-card">
+            <div className="text-center">
+              <div className="text-5xl mb-4">🎊</div>
+              <h3 className="pixel-text text-sm mb-4 pixel-text-white">
+                NEW YEAR<br/>CELEBRATION
+              </h3>
+              <hr className="pixel-hr" />
+              <p className="pixel-text text-xs leading-relaxed pixel-text-white">
+                FRIENDLY FUN<br/>
+                GLORY & HONOR<br/>
+                EPIC NOSTALGIA!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
       <section className="py-16 text-center">
-        <div className="parchment-card max-w-2xl mx-auto p-10">
-          <h2 className="text-4xl font-bold mb-6 medieval-title">
-            🎯 Ready for Battle? 🎯
+        <div className="pixel-card max-w-2xl mx-auto enchanted">
+          <h2 className="pixel-title text-3xl mb-6 pixel-text-gold">
+            🎯 READY? 🎯
           </h2>
-          <p className="text-xl mb-8" style={{ color: '#432818' }}>
-            The gates are open! Claim your spot in this legendary tournament
-            and forge your path to victory!
+          <p className="pixel-text text-sm mb-8 leading-relaxed" style={{ color: '#2A1A0A' }}>
+            THE GATES ARE OPEN!<br/>
+            CLAIM YOUR SPOT!<br/>
+            FORGE YOUR DESTINY!
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Link href="/register" className="btn-medieval hover-lift text-xl">
-              ⚔️ Register Now
+            <Link href="/register" className="btn-pixel btn-gold text-base">
+              ⚔️ REGISTER NOW
             </Link>
-            <Link href="/players" className="btn-burgundy hover-lift text-xl">
-              👥 View Warriors
+            <Link href="/players" className="btn-pixel btn-stone text-base">
+              👥 SEE WARRIORS
             </Link>
           </div>
-          <p className="mt-8 text-sm opacity-70" style={{ color: '#6F1D1B' }}>
-            ✨ Ring in the New Year with epic battles! ✨
-          </p>
+          <div className="mt-8">
+            <div className="pixel-text text-xs pixel-text-gold">
+              ✨ RING IN THE NEW YEAR WITH EPIC BATTLES! ✨
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Pixel Art Decoration */}
+      <div className="text-center py-8 opacity-30">
+        <div className="pixel-text text-xs">
+          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+        </div>
+      </div>
     </main>
   );
 }

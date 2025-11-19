@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import Snowfall from "@/components/Snowfall";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Coupe Québec AOE2 - New Year Tournament 2025",
@@ -18,8 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Snowfall />
+      <body>
         <Navigation />
         {children}
       </body>
