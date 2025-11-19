@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "register": "Register",
+    "players": "Players",
+    "brackets": "Brackets",
+    "admin": "Admin"
+  },
+  "home": {
+    "title": "Coupe Québec AOE2",
+    "subtitle": "Age of Empires 2 Tournament",
+    "description": "Join us for an epic 20-player single-elimination tournament! Reunite with old friends and compete for glory in the ultimate Age of Empires 2 showdown.",
+    "registerNow": "Register Now",
+    "viewBrackets": "View Brackets",
+    "playersRegistered": "Players Registered"
+  },
+  "register": {
+    "title": "Register for Coupe Québec AOE2",
+    "name": "Full Name",
+    "email": "Email",
+    "aoe2Username": "AoE2 Username",
+    "preferredCiv": "Preferred Civilization",
+    "tournamentCode": "Tournament Code",
+    "submit": "Register",
+    "success": "Registration Successful!",
+    "successMessage": "You're registered for Coupe Québec AOE2!"
+  }
+}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LanguageToggle from './LanguageToggle';
 
 export default function Navigation() {
   return (
@@ -8,7 +9,7 @@ export default function Navigation() {
           <Link href="/" className="text-xl font-bold">
             Coupe Québec AOE2
           </Link>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <Link href="/register" className="hover:text-gray-300">
               Register
             </Link>
@@ -21,6 +22,7 @@ export default function Navigation() {
             <Link href="/admin" className="hover:text-gray-300 text-sm">
               Admin
             </Link>
+            <LanguageToggle />
           </div>
         </div>
       </div>

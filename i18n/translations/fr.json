@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "register": "S'inscrire",
+    "players": "Joueurs",
+    "brackets": "Tournoi",
+    "admin": "Admin"
+  },
+  "home": {
+    "title": "Coupe Québec AOE2",
+    "subtitle": "Tournoi Age of Empires 2",
+    "description": "Rejoignez-nous pour un tournoi épique à élimination directe de 20 joueurs! Retrouvez vos vieux amis et affrontez-vous pour la gloire dans l'ultime compétition Age of Empires 2.",
+    "registerNow": "S'inscrire maintenant",
+    "viewBrackets": "Voir les matchs",
+    "playersRegistered": "Joueurs inscrits"
+  },
+  "register": {
+    "title": "Inscription Coupe Québec AOE2",
+    "name": "Nom complet",
+    "email": "Courriel",
+    "aoe2Username": "Nom d'utilisateur AoE2",
+    "preferredCiv": "Civilisation préférée",
+    "tournamentCode": "Code du tournoi",
+    "submit": "S'inscrire",
+    "success": "Inscription réussie!",
+    "successMessage": "Vous êtes inscrit à la Coupe Québec AOE2!"
+  }
+}
