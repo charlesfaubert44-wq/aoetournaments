@@ -6,17 +6,30 @@ interface PlayerCardProps {
 
 export default function PlayerCard({ player }: PlayerCardProps) {
   return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
-      <h3 className="text-lg font-semibold mb-2">{player.name}</h3>
-      <div className="space-y-1 text-sm text-gray-600">
-        <p><span className="font-medium">Steam:</span> {player.steam_username}</p>
-        <p><span className="font-medium">ELO:</span> {player.elo !== null ? player.elo : 'N/A'}</p>
-        {player.seed && (
-          <p><span className="font-medium">Seed:</span> #{player.seed}</p>
-        )}
-        <p className="text-xs text-gray-400">
-          Registered: {new Date(player.registered_at).toLocaleDateString()}
-        </p>
+    <div className="player-card">
+      <div className="relative z-10">
+        <h3 className="text-xl font-bold mb-3 medieval-title text-shadow">{player.name}</h3>
+        <div className="space-y-2 text-sm" style={{ color: '#432818' }}>
+          <div className="flex justify-between items-center border-b border-bronze pb-2" style={{ borderColor: '#99582A40' }}>
+            <span className="font-semibold" style={{ color: '#6F1D1B' }}>Steam Username:</span>
+            <span className="font-medium">{player.steam_username}</span>
+          </div>
+          <div className="flex justify-between items-center border-b border-bronze pb-2" style={{ borderColor: '#99582A40' }}>
+            <span className="font-semibold" style={{ color: '#6F1D1B' }}>ELO Rating:</span>
+            <span className="font-bold text-lg" style={{ color: '#BB9457' }}>
+              {player.elo !== null ? player.elo : 'N/A'}
+            </span>
+          </div>
+          {player.seed && (
+            <div className="flex justify-between items-center border-b border-bronze pb-2" style={{ borderColor: '#99582A40' }}>
+              <span className="font-semibold" style={{ color: '#6F1D1B' }}>Seed:</span>
+              <span className="font-bold">#{player.seed}</span>
+            </div>
+          )}
+          <p className="text-xs pt-2 opacity-70">
+            ⚔️ Registered: {new Date(player.registered_at).toLocaleDateString()}
+          </p>
+        </div>
       </div>
     </div>
   );

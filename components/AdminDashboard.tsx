@@ -13,9 +13,36 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
   const [players, setPlayers] = useState(initialPlayers);
   const [matches, setMatches] = useState(initialMatches);
   const [generating, setGenerating] = useState(false);
+  const [generatingPlayers, setGeneratingPlayers] = useState(false);
   const [tournamentCode, setTournamentCode] = useState(process.env.NEXT_PUBLIC_TOURNAMENT_CODE || 'COUPE_QUEBEC_2025');
   const [showCode, setShowCode] = useState(false);
   const router = useRouter();
+
+  const handleGeneratePlayers = async () => {
+    if (!confirm('Generate 20 demo players? This will DELETE all existing players and matches!')) {
+      return;
+    }
+
+    setGeneratingPlayers(true);
+    try {
+      const response = await fetch('/api/admin/generate-players', {
+        method: 'POST'
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to generate players');
+      }
+
+      router.refresh();
+      alert(`Success! Created ${data.players.length} demo players`);
+    } catch (error: any) {
+      alert(error.message);
+    } finally {
+      setGeneratingPlayers(false);
+    }
+  };
 
   const handleGenerateBracket = async () => {
     if (!confirm('Generate tournament bracket? This will reset any existing bracket.')) {
@@ -131,6 +158,19 @@ export default function AdminDashboard({ initialPlayers, initialMatches }: Admin
             Copy
           </button>
         </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">Demo Data</h2>
+        <p className="text-gray-600 mb-4">Generate 20 demo players with ELO ratings for testing</p>
+        <button
+          onClick={handleGeneratePlayers}
+          disabled={generatingPlayers}
+          className="px-6 py-3 bg-purple-600 text-white rounded hover:bg-purple-700 disabled:bg-gray-400"
+        >
+          {generatingPlayers ? 'Generating...' : 'Generate 20 Players'}
+        </button>
+        <p className="mt-2 text-sm text-red-600">⚠️ This will delete all existing players and matches!</p>
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow">

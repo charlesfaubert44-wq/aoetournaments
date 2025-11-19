@@ -5,17 +5,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap');
 
 :root {
-  --medieval-gold: #D4AF37;
-  --medieval-crimson: #8B0000;
-  --medieval-stone: #8B8680;
+  --medieval-burgundy: #6F1D1B;
+  --medieval-gold: #BB9457;
+  --medieval-dark-brown: #432818;
+  --medieval-bronze: #99582A;
+  --medieval-cream: #FFE6A7;
   --medieval-parchment: #F4E7D7;
-  --medieval-ink: #2C2416;
-  --medieval-forest: #2D5016;
   --new-year-sparkle: #FFD700;
 }
 
 body {
-  background: linear-gradient(135deg, #1a1410 0%, #2d2416 50%, #1a1410 100%);
+  background: linear-gradient(135deg, #432818 0%, #6F1D1B 25%, #432818 50%, #99582A 75%, #432818 100%);
   background-attachment: fixed;
   min-height: 100vh;
   position: relative;
@@ -30,8 +30,9 @@ body::before {
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(187, 148, 87, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(111, 29, 27, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 230, 167, 0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -48,10 +49,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .parchment-card {
-  background: linear-gradient(to bottom, #F4E7D7 0%, #E8D5C4 100%);
-  border: 3px solid #8B7355;
+  background: linear-gradient(to bottom, #FFE6A7 0%, #F4E7D7 100%);
+  border: 3px solid #99582A;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 16px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -169,11 +170,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Cinzel', serif;
   font-weight: 600;
   padding: 12px 32px;
-  background: linear-gradient(to bottom, #D4AF37 0%, #B8941F 100%);
-  color: #1a1410;
-  border: 2px solid #8B7355;
+  background: linear-gradient(to bottom, #BB9457 0%, #99582A 100%);
+  color: #FFE6A7;
+  border: 2px solid #432818;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 230, 167, 0.3);
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
@@ -181,14 +182,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-medieval:hover {
-  background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 100%);
+  background: linear-gradient(to bottom, #FFE6A7 0%, #BB9457 100%);
+  color: #432818;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 12px rgba(187, 148, 87, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-medieval:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 4px rgba(67, 40, 24, 0.4), inset 0 1px 0 rgba(255, 230, 167, 0.2);
+}
+
+.btn-burgundy {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  padding: 12px 32px;
+  background: linear-gradient(to bottom, #6F1D1B 0%, #432818 100%);
+  color: #FFE6A7;
+  border: 2px solid #99582A;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(67, 40, 24, 0.5), inset 0 1px 0 rgba(255, 230, 167, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-burgundy:hover {
+  background: linear-gradient(to bottom, #99582A 0%, #6F1D1B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(111, 29, 27, 0.6), inset 0 1px 0 rgba(255, 230, 167, 0.3);
+}
+
+.btn-burgundy:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(67, 40, 24, 0.4);
 }
 
 /* Tournament bracket styling */
@@ -209,8 +237,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Player card styling */
 .player-card {
-  background: linear-gradient(135deg, #F4E7D7 0%, #E8D5C4 100%);
-  border: 2px solid #8B7355;
+  background: linear-gradient(135deg, #FFE6A7 0%, #F4E7D7 100%);
+  border: 3px solid #99582A;
   border-radius: 12px;
   padding: 20px;
   position: relative;
@@ -225,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(187, 148, 87, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -236,6 +264,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .player-card:hover {
   border-color: var(--medieval-gold);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(187, 148, 87, 0.5), 0 0 30px rgba(255, 230, 167, 0.3);
   transform: translateY(-5px);
 }
