@@ -1,0 +1,43 @@
+import { cookies } from 'next/headers';
+import bcrypt from 'bcryptjs';
+import { getDatabase } from './db';
+
+const SESSION_COOKIE = 'admin_session';
+
+export async function verifyAdmin(username: string, password: string): Promise<boolean> {
+  const db = getDatabase();
+  const admin = db.prepare('SELECT * FROM admin_users WHERE username = ?').get(username) as any;
+
+  if (!admin) {
+    return false;
+  }
+
+  return await bcrypt.compare(password, admin.passwordHash);
+}
+
+export async function createSession(username: string) {
+  const cookieStore = await cookies();
+  // Simple session - just store username (in production, use signed JWT)
+  cookieStore.set(SESSION_COOKIE, username, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 24 // 24 hours
+  });
+}
+
+export async function deleteSession() {
+  const cookieStore = await cookies();
+  cookieStore.delete(SESSION_COOKIE);
+}
+
+export async function getSession(): Promise<string | null> {
+  const cookieStore = await cookies();
+  const session = cookieStore.get(SESSION_COOKIE);
+  return session?.value || null;
+}
+
+export async function isAuthenticated(): Promise<boolean> {
+  const session = await getSession();
+  return session !== null;
+}
