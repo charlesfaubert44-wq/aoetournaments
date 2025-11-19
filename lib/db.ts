@@ -1,7 +1,12 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 
-const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), 'tournament.db');
+// Use /tmp for Vercel serverless environment
+const isVercel = process.env.VERCEL === '1';
+const dbPath = isVercel
+  ? path.join('/tmp', 'tournament.db')
+  : (process.env.DATABASE_PATH || path.join(process.cwd(), 'tournament.db'));
 
 let db: Database.Database | null = null;
 
@@ -11,12 +16,9 @@ export function getDatabase(): Database.Database {
     db.pragma('journal_mode = WAL');
     db.pragma('foreign_keys = ON');
 
-    // Auto-initialize if tables don't exist
-    const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='players'").get();
-    if (!tables) {
-      console.log('Tables not found, initializing database...');
-      ensureInitialized(db);
-    }
+    // Always initialize tables (especially important for Vercel /tmp which is ephemeral)
+    console.log('Ensuring database tables exist...');
+    ensureInitialized(db);
   }
   return db;
 }
