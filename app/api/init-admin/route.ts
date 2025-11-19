@@ -6,8 +6,8 @@ export const dynamic = 'force-dynamic';
 
 export async function POST() {
   try {
-    const username = process.env.ADMIN_USERNAME || 'admin';
-    const password = process.env.ADMIN_PASSWORD || 'changeme123';
+    const username = (process.env.ADMIN_USERNAME || 'admin').trim();
+    const password = (process.env.ADMIN_PASSWORD || 'changeme123').trim();
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Check if admin already exists

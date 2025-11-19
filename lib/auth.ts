@@ -5,13 +5,13 @@ import { getAdminByUsername } from './supabase';
 const SESSION_COOKIE = 'admin_session';
 
 export async function verifyAdmin(username: string, password: string): Promise<boolean> {
-  const admin = await getAdminByUsername(username);
+  const admin = await getAdminByUsername(username.trim());
 
   if (!admin) {
     return false;
   }
 
-  return await bcrypt.compare(password, admin.password_hash);
+  return await bcrypt.compare(password.trim(), admin.password_hash);
 }
 
 export async function createSession(username: string) {
