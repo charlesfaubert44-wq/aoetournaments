@@ -2,26 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-gray-50;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1, h2, h3, h4, h5, h6 {
+  @apply font-medieval;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-medieval-gold text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-medieval-crimson text-white font-semibold rounded-lg hover:bg-red-700 transition-colors;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
+}
+
+.tournament-bracket-match {
+  @apply border-2 border-medieval-stone rounded-lg p-4 bg-white hover:shadow-lg transition-shadow;
 }

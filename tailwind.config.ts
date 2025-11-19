@@ -11,7 +11,16 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        medieval: {
+          gold: '#D4AF37',
+          crimson: '#DC143C',
+          stone: '#708090',
+          bronze: '#CD7F32',
+        }
       },
+      fontFamily: {
+        medieval: ['Georgia', 'serif'],
+      }
     },
   },
   plugins: [],
